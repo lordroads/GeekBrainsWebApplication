@@ -1,4 +1,4 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Database.Data;
 using EmployeeService.Models.Dto;
 using EmployeeService.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +32,16 @@ namespace EmployeeService.Controllers
         {
             var employeeType = _employeeTypeRepository.GetById(id);
 
-            return Ok(new EmployeeTypeDto
+            if (employeeType != null)
             {
-                Id = employeeType.Id,
-                Description = employeeType.Description
-            });
+                return Ok(new EmployeeTypeDto
+                {
+                    Id = employeeType.Id,
+                    Description = employeeType.Description
+                });
+            }
+
+            return BadRequest(employeeType);
         }
 
         [HttpPost("employee-type/create")]

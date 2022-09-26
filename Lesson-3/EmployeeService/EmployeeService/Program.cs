@@ -1,6 +1,8 @@
+using EmployeeService.Database.Data;
 using EmployeeService.Services;
 using EmployeeService.Services.Implementations;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,9 +30,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 #endregion
 
-#region Configure DataBase
+#region Configure EF (EmployeeDatabase DataBase)
 
 //TODO: Area for EntityFramework configurations.
+builder.Services.AddDbContext<EmployeeServiceDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["Settings:DatabaseOptions:ConnectionString"]);
+});
 
 #endregion
 

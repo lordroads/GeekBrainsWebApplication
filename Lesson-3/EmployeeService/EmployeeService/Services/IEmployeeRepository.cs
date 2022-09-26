@@ -1,4 +1,4 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Database.Data;
 
 namespace EmployeeService.Services;
 
