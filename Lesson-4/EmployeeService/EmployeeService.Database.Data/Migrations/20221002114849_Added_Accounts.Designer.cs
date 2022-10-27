@@ -4,6 +4,7 @@ using EmployeeService.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeService.Database.Data.Migrations
 {
     [DbContext(typeof(EmployeeServiceDbContext))]
-    partial class EmployeeServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221002114849_Added_Accounts")]
+    partial class Added_Accounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,11 +50,6 @@ namespace EmployeeService.Database.Data.Migrations
                     b.Property<bool>("Locked")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("PasswordSalt")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -62,6 +59,11 @@ namespace EmployeeService.Database.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("passwordHash")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("AccountId");
 
