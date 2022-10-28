@@ -1,7 +1,7 @@
 ﻿using Grpc.Net.Client;
 using static EmployeeServiceProto.DictionariesService;
 
-var channel = GrpcChannel.ForAddress("http://localhost:5001/");
+var channel = GrpcChannel.ForAddress("http://localhost:5299/");
 DictionariesServiceClient client = new DictionariesServiceClient(channel);
 
 Console.WriteLine("Введите тип сотрудника: ");
@@ -22,3 +22,5 @@ foreach (var employeeType in getAllEmployeeTypeResponse.EmployeeTypes)
 {
     Console.WriteLine($"#{employeeType.Id} / {employeeType.Description}");
 }
+
+Console.ReadKey(true);

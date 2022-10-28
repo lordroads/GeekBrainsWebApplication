@@ -7,6 +7,7 @@ using EmployeeService.Services.Implementations;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -16,9 +17,11 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Listen(IPAddress.Any, 5001);
+    //options.Listen(IPAddress.Any, 5001);
+    options.ConfigureEndpointDefaults(lo => lo.Protocols = HttpProtocols.Http2);
 });
 
 // Add services to the container.
