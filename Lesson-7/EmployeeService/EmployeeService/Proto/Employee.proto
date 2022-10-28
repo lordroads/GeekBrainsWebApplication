@@ -1,0 +1,62 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "EmployeeServiceProto";
+
+package EmployeeServiceProto;
+
+service DictionariesService{
+
+	rpc Create (CreateEmployeeTypeRequest) returns (CreateEmployeeTypeResponse);
+	rpc GetAll (GetAllEmployeeTypeRequest) returns (GetAllEmployeeTypeResponse);
+	rpc GetById (GetByIdEmployeeTypeRequest) returns (GetByIdEmployeeTypeResponse);
+	rpc Update (UpdateEmployeeTypeRequest) returns (UpdateEmployeeTypeResponse);
+	rpc Delete (DeleteEmployeeTypeRequest) returns (DeleteEmployeeTypeResponse);
+}
+
+message CreateEmployeeTypeRequest{
+	string description = 1;
+}
+
+message CreateEmployeeTypeResponse{
+	int32 id = 1;
+}
+
+message GetAllEmployeeTypeRequest{
+
+}
+
+message GetAllEmployeeTypeResponse{
+
+	message EmployeeTypeDto{
+		int32 id = 1;
+		string description = 2;
+	}
+	
+	repeated EmployeeTypeDto employeeTypes = 1;
+}
+
+message GetByIdEmployeeTypeRequest{
+	int32 id = 1;
+}
+
+message GetByIdEmployeeTypeResponse{
+	int32 id = 1;
+	string description =2;
+}
+
+message UpdateEmployeeTypeRequest{
+	int32 id = 1;
+	string description = 2;
+}
+
+message UpdateEmployeeTypeResponse{
+	bool result = 1;
+}
+
+message DeleteEmployeeTypeRequest{
+	int32 id = 1;
+}
+
+message DeleteEmployeeTypeResponse{
+	bool result = 1;
+}
